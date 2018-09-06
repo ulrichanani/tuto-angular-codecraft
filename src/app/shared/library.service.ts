@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Book} from "./book";
+import {Book} from './book';
 
 @Injectable()
 export class LibraryService {
@@ -17,7 +17,7 @@ export class LibraryService {
   private load() {
     let savedBooks = localStorage.getItem('books');
     if (!savedBooks) {
-      return
+      return;
     }
     // console.log(savedBooks);
     savedBooks = JSON.parse(savedBooks);

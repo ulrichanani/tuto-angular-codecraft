@@ -1,8 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
+import {HttpClientModule} from '@angular/common/http';
 
+// COMPONENTS
 import {AppComponent} from './app.component';
 import {HeaderComponent} from './header/header.component';
 import {BookComponent} from './book/book.component';
@@ -28,11 +29,11 @@ import {LibraryService} from './shared/library.service';
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes, {useHash: true})
   ],
   providers: [GoogleBooksService, LibraryService],
   bootstrap: [AppComponent]

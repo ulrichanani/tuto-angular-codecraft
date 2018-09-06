@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
 import {Book} from './book';
 import {map, tap} from 'rxjs/operators';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable()
 export class GoogleBooksService {
@@ -15,7 +15,7 @@ export class GoogleBooksService {
   public books: Book[];
 
 
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
   }
 
   get startIndex() {

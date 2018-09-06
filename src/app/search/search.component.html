@@ -5,10 +5,10 @@
         <input type="search"
                class="form-control"
                placeholder="Enter search string"
-               name="search"
+               name="search" [formControl]="search"
                required>
       </div>
-      <button type="submit"
+      <button type="submit" (click)="doSearch()"
               class="btn btn-primary ml-2">
         Search
       </button>
@@ -17,13 +17,13 @@
 
     <div class="text-center">
       <!-- TODO: Show when we are calling the API -->
-      <p class="lead">Loading...</p>
+      <p *ngIf="gbooks.loading" class="lead">Loading...</p>
 
       <!-- TODO: Show when no results are returned from the API -->
-      <p class="lead">No results returned</p>
+      <p *ngIf="gbooks.totalItems > 0" class="lead">No results returned</p>
 
       <!-- TODO: Show when the user hasn't performed a search yet -->
-      <p class="lead">Enter a search string above and press search</p>
+      <p *ngIf="!gbooks.loading" class="lead">Enter a search string above and press search</p>
     </div>
   </div>
 

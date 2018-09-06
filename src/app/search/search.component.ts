@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {GoogleBooksService} from "../shared/google-books.service";
-import {Book} from "../shared/book";
-import {Router, ActivatedRoute} from "@angular/router";
+import /**/{Component, OnInit} from '@angular/core';
+import {GoogleBooksService} from '../shared/google-books.service';
+import {Book} from '../shared/book';
+import {Router, ActivatedRoute} from '@angular/router';
+import {FormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -10,15 +11,23 @@ import {Router, ActivatedRoute} from "@angular/router";
 })
 export class SearchComponent implements OnInit {
 
-  constructor() {
+  search: FormControl;
+
+  constructor(public gbooks: GoogleBooksService) {
+    this.search = new FormControl('Harry Potter');
   }
 
   doSearch() {
-    //TODO
+    if (this.search.value == null) { return; }
+    const term = this.search.value.toString().trim();
+    if (term.length > 0) {
+      this.onSearch(term);
+    }
   }
 
   onSearch(term: string) {
-    //TODO
+    console.log('onSearch Triggered with : ', term);
+    this.gbooks.searchBooks(term);
   }
 
   ngOnInit() {

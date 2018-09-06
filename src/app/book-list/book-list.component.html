@@ -1,121 +1,25 @@
-<div class="row m-3">
+<div class="m-3 card-columns"> <!-- CARD DECK END -->
 
-  <div class="card-deck"> <!-- CARD DECK END -->
-
-    <div class="card">
+    <div class="card" *ngFor="let book of gbooks.books">
       <div class="card-header">
         <h3 class="panel-title text-center">
-          <a>Book Title 2</a>
+          <a>{{book.title}}</a>
         </h3>
-        <h6 class="card-subtitle mb-2 text-muted">Book Subtitle</h6>
+        <h6 class="card-subtitle mb-2 text-muted">{{book.subTitle}}</h6>
         <div class="card-text">
-          <span class="badge badge-pill badge-secondary mr-1 pb-1">Category 1</span>
-          <span class="badge badge-pill badge-secondary mr-1 pb-1">Category 2</span>
-          <span class="badge badge-pill badge-secondary mr-1 pb-1">Category 3</span>
+          <span *ngFor="let category of book.categories"
+                class="badge badge-pill badge-secondary mr-1 pb-1">{{category}}</span>
         </div>
       </div>
-      <img class="" src="assets/1.jpg" alt="Card image cap" width="100%">
-      <div class="card-footer">
+      <img class="" src="{{book.thumbnail}}" alt="Card image cap" width="100%">
+      <div *ngIf="book.authors" class="card-footer">
         <p class="card-text">
-          <small class="text-muted">by<span>
-            Asim Hussain</span></small>
-        </p>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <h3 class="panel-title text-center">
-          <a>Book Title 2</a>
-        </h3>
-        <h6 class="card-subtitle mb-2 text-muted">Book Subtitle</h6>
-        <div class="card-text">
-          <span class="badge badge-pill badge-secondary mr-1 pb-1">Category 1</span>
-          <span class="badge badge-pill badge-secondary mr-1 pb-1">Category 2</span>
-          <span class="badge badge-pill badge-secondary mr-1 pb-1">Category 3</span>
-        </div>
-      </div>
-      <img class="" src="assets/1.jpg" alt="Card image cap" width="100%">
-      <div class="card-footer">
-        <p class="card-text">
-          <small class="text-muted">by<span>
-            Asim Hussain</span></small>
+          <small class="text-muted">by
+            <span>{{formatAuthors(book.authors)}}</span>
+          </small>
         </p>
       </div>
     </div>
 
   </div> <!-- CARD DECK END -->
 
-
-  <!--<div class="col-md-4 col-lg-3 col-sm-1">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title text-center">
-          <a>Book Title 1</a>
-        </h3>
-      </div>
-      <div class="panel-body text-center">
-        <h6 class="card-subtitle mb-2 text-muted">Book Subtitle</h6>
-        <div class="card-text">
-          <span class="mr-1 badge badge-pill badge-default">
-            Category 1
-          </span>
-          <span class="mr-1 badge badge-pill badge-default">
-            Category 2
-          </span>
-          <span class="mr-1 badge badge-pill badge-default">
-            Category 3
-          </span>
-        </div>
-      </div>
-      <img class="book-thumbnail"
-           src="http://lorempixel.com/g/200/300/"
-           alt="">
-      <div class="panel-footer">
-        <span>
-          by
-          <span>
-            Asim Hussain
-          </span>
-        </span>
-      </div>
-    </div>
-  </div>
-
-  <div class="col-md-4 col-lg-3 col-sm-1">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title text-center">
-          <a>Book Title 2</a>
-        </h3>
-      </div>
-      <div class="panel-body text-center">
-        <h6 class="card-subtitle mb-2 text-muted">Book Subtitle</h6>
-        <div class="card-text">
-          <span class="mr-1 badge badge-pill badge-default">
-            Category 1
-          </span>
-          <span class="mr-1 badge badge-pill badge-default">
-            Category 2
-          </span>
-          <span class="mr-1 badge badge-pill badge-default">
-            Category 3
-          </span>
-        </div>
-      </div>
-      <img class="book-thumbnail"
-           src="http://lorempixel.com/g/200/300/"
-           alt="">
-      <div class="panel-footer">
-        <span>
-          by
-          <span>
-            Asim Hussain
-          </span>
-        </span>
-      </div>
-    </div>
-  </div>-->
-
-
-</div>

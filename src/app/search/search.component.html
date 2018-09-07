@@ -2,13 +2,13 @@
   <div class="m-3 text-center">
     <form class="form-inline">
       <div class="form-group">
-        <input type="search"
+        <input type="text"
                class="form-control"
                placeholder="Enter search string"
-               name="search" [formControl]="search"
-               required>
+               name="search"
+               required #search>
       </div>
-      <button type="submit" (click)="doSearch()"
+      <button type="submit" (click)="onSearch(search.value)"
               class="btn btn-primary ml-2">
         Search
       </button>
@@ -16,22 +16,17 @@
     <hr />
 
     <div class="text-center">
-      <!-- TODO: Show when we are calling the API -->
       <p *ngIf="gbooks.loading" class="lead">Loading...</p>
 
-      <!-- TODO: Show when no results are returned from the API -->
       <p *ngIf="gbooks.totalItems > 0" class="lead">No results returned</p>
 
-      <!-- TODO: Show when the user hasn't performed a search yet -->
-      <p *ngIf="!gbooks.loading" class="lead">Enter a search string above and press search</p>
+      <p *ngIf="!gbooks.initialised" class="lead">Enter a search string above and press search</p>
     </div>
   </div>
 
-  <!-- TODO: Show the results of the search -->
-  <app-book-list></app-book-list>
+  <app-book-list *ngIf="!gbooks.loading" [books]="gbooks.books"></app-book-list>
 
   <div class="d-flex justify-content-center">
-    <!-- TODO: Show pagnation -->
     <app-pager></app-pager>
   </div>
 </div>

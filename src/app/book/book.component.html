@@ -1,34 +1,35 @@
 <div class="row m-3">
-  <div class="col-lg-6">
-    <h2 class="text-center">Book Title</h2>
-    <h6 class="text-center">Book Subtitle</h6>
+  <div class="col-lg-6" *ngIf="book | async; let book; else loading">
+    <h2 class="text-center">{{book.title}}</h2>
+    <h6 class="text-center">{{book.subTitle}}</h6>
     <div class=" m-3">
-      <img class="rounded mx-auto" src="http://lorempixel.com/g/200/300/">
+      <img class="rounded mx-auto" src="{{book.thumbnail}}">
     </div>
     <dl>
       <dt>Description</dt>
       <dd>
-        <p
-          [innerHtml]="'Hello this is the book <strong>description</strong> by binding to [innerHtml] we can use HTML tags'"></p>
+        <p  [innerHtml]="book.description ? book.description.slice(0, 150) + ' ...' : ''"></p>
       </dd>
       <dt>Authors</dt>
-      <dd>Asim Hussain</dd>
+      <dd *ngFor="let author of book.authors">{{author}}</dd>
       <dt>Categories</dt>
       <dd>
-        <span class="badge badge-pill badge-secondary mr-1 pb-1">Category 1</span>
-        <span class="badge badge-pill badge-secondary mr-1 pb-1">Category 2</span>
-        <span class="badge badge-pill badge-secondary mr-1 pb-1">Category 2</span>
+        <span *ngFor="let category of book.categories"
+              class="badge badge-pill badge-secondary mr-1 pb-1">{{category}}</span>
       </dd>
       <dt>Published Date</dt>
-      <dd>2017-01-01</dd>
+      <dd>{{book.publishDate}}</dd>
       <dt>Publisher</dt>
-      <dd>Code Craft</dd>
+      <dd>{{book.publisher}}</dd>
     </dl>
-    <p
-      [innerHtml]="'Hello this is the book <strong>description</strong> by binding to [innerHtml] we can use HTML tags'"></p>
+    <p [innerHtml]="book.description"></p>
     <p>
-      <button type="button" class="btn btn-primary">Add To Library</button>
-      <button type="button" class="btn btn-secondary ml-2">Remove From Library</button>
+      <button type="button" [disabled]="hasBook(book)" (click)="addBook(book)"
+              class="btn btn-primary">Add To Library</button>
+      <button type="button" [disabled]="!hasBook(book)" (click)="removeBook(book)"
+              class="btn btn-secondary ml-2">Remove From Library</button>
     </p>
   </div>
 </div>
+
+<ng-template #loading>Loading, Please Wait ...</ng-template>

@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {GoogleBooksService} from '../shared/google-books.service';
 
 @Component({
   selector: 'app-pager',
@@ -7,15 +8,19 @@ import {Component, OnInit} from "@angular/core";
 })
 export class PagerComponent implements OnInit {
 
-  constructor() {
+  constructor(public gbooks: GoogleBooksService) {
   }
 
   next() {
-    //TODO
+    if (this.gbooks._page >= this.gbooks.totalPages) { return; }
+    this.gbooks._page += 1;
+    this.gbooks.searchBooks(this.gbooks.query);
   }
 
   prev() {
-    //TODO
+    if (this.gbooks._page < 2) { return; }
+    this.gbooks._page -= 1;
+    this.gbooks.searchBooks(this.gbooks.query);
   }
 
 

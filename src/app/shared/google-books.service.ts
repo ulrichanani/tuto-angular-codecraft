@@ -50,7 +50,6 @@ export class GoogleBooksService {
     this.books = [];
     this.http.get(`${this.API_PATH}?q=${this.query}&maxResults=${this.pageSize}&startIndex=${this.startIndex}`)
       .pipe(
-        map(res => res),
         tap(res => {
           let data: any = res;
         this.totalItems = data.totadatalItems;
@@ -63,7 +62,7 @@ export class GoogleBooksService {
         return items.map(item => this.bookFactory(item));
       }),
         tap( () => this.loading = false),
-        tap(books => console.log(books))
+        // tap(books => console.log(books))
       ).subscribe((books) => this.books = books);
   }
 
@@ -71,7 +70,7 @@ export class GoogleBooksService {
     return this.http.get(`${this.API_PATH}/${bookId}`);
   }
 
-  private bookFactory(item: any): Book {
+  public bookFactory(item: any): Book {
     return new Book(
       item.id,
       item.volumeInfo.title,
@@ -82,7 +81,8 @@ export class GoogleBooksService {
       item.volumeInfo.description,
       item.volumeInfo.categories ? item.volumeInfo.categories.map((item) => item.split('/').pop().trim()) : ['N/A'],
       item.volumeInfo.imageLinks.thumbnail,
-      item.volumeInfo.imageLinks.smallThumbnail
-    );
+      item.volumeInfo.imageLinks.smallThumbnail,
+      item.volumeInfo.infoLink
+  );
   }
 }

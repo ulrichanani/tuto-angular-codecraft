@@ -51,7 +51,7 @@ export class LibraryService {
   indexOf(book: Book): number {
     for (let i = 0; i < this.books.length; i++) {
       if (this.books[i].id === book.id) {
-        return i
+        return i;
       }
     }
     return -1;

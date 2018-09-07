@@ -15,6 +15,7 @@ export class LibraryService {
   }
 
   private load() {
+    this.books = [];
     let savedBooks = localStorage.getItem('books');
     if (!savedBooks) {
       return;
@@ -25,7 +26,7 @@ export class LibraryService {
     for (let i = 0; i < savedBooks.length; i++) {
       let savedBook = savedBooks[i];
       // console.log(savedBook);
-      //noinspection TypeScriptValidateTypes,TypeScriptUnresolvedFunction
+      // noinspection TypeScriptValidateTypes,TypeScriptUnresolvedFunction
       this.books.push(Object.assign(new Book(null, null, null, null, null, null, null, null, null, null), savedBook));
     }
     // console.log(this.books);

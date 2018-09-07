@@ -81,8 +81,7 @@ export class GoogleBooksService {
       item.volumeInfo.description,
       item.volumeInfo.categories ? item.volumeInfo.categories.map((item) => item.split('/').pop().trim()) : ['N/A'],
       item.volumeInfo.imageLinks.thumbnail,
-      item.volumeInfo.imageLinks.smallThumbnail,
-      item.volumeInfo.infoLink
+      item.volumeInfo.imageLinks.smallThumbnail
   );
   }
 }

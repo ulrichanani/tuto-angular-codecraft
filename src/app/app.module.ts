@@ -2,6 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { StoreModule } from '@ngrx/store';
+import { reducer } from './shared/ngrx-library.reducer';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
@@ -14,7 +16,6 @@ import { RouterModule } from '@angular/router';
 import { routes } from './app.routes';
 import { GoogleBooksService } from './shared/google-books.service';
 import { PagerComponent } from './pager/pager.component';
-import { LibraryService } from './shared/library.service';
 import { ArrayDisplayPipe } from './array-display/array-display.pipe';
 
 @NgModule({
@@ -35,9 +36,12 @@ import { ArrayDisplayPipe } from './array-display/array-display.pipe';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
-    RouterModule.forRoot(routes, {useHash: true})
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot({
+      book: reducer
+    })
   ],
-  providers: [GoogleBooksService, LibraryService],
+  providers: [GoogleBooksService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

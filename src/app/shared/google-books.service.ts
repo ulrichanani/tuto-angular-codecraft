@@ -50,19 +50,24 @@ export class GoogleBooksService {
     this.books = [];
     this.http.get(`${env.api_path}?q=${this.query}&maxResults=${this.pageSize}&startIndex=${this.startIndex}`)
       .pipe(
+
         tap(res => {
-          let data: any = res;
-        this.totalItems = data.totadatalItems;
-      }),
+          const data: any = res;
+          this.totalItems = data.totadatalItems;
+        }),
+
         map(res => {
-          let data: any = res;
-        return data.items ? data.items : [];
-      }),
+          const data: any = res;
+          return data.items ? data.items : [];
+        }),
         map(items => {
-        return items.map(item => this.bookFactory(item));
-      }),
-        tap( () => this.loading = false),
+          return items.map(item => this.bookFactory(item));
+        }),
+
+        tap(() => this.loading = false),
+
         // tap(books => console.log(books))
+
       ).subscribe((books) => this.books = books);
   }
 
@@ -82,6 +87,6 @@ export class GoogleBooksService {
       item.volumeInfo.categories ? item.volumeInfo.categories.map((item) => item.split('/').pop().trim()) : ['N/A'],
       item.volumeInfo.imageLinks.thumbnail,
       item.volumeInfo.imageLinks.smallThumbnail
-  );
+    );
   }
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { LibraryService } from '../shared/library.service';
+import { Book } from '../shared/book';
+import { AppState } from '../app.state';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-library',
@@ -8,7 +10,12 @@ import { LibraryService } from '../shared/library.service';
 })
 export class LibraryComponent implements OnInit {
 
-  constructor(public library: LibraryService) {
+  books: Book[];
+
+  constructor(private store: Store<AppState>) {
+    this.store.select('book').subscribe(res => {
+      this.books = res;
+    });
   }
 
   ngOnInit() {

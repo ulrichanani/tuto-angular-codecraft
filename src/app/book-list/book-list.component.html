@@ -1,25 +1,24 @@
 <div class="m-3 card-columns"> <!-- CARD DECK END -->
 
-    <div class="card" *ngFor="let book of books">
-      <div class="card-header">
-        <h3 class="panel-title text-center">
-          <a [routerLink]="['/book', book.id]">{{book.title}}</a>
-        </h3>
-        <h6 class="card-subtitle mb-2 text-muted">{{book.subTitle}}</h6>
-        <div class="card-text">
+  <div class="card" *ngFor="let book of books">
+    <div class="card-header">
+      <h3 class="panel-title text-center">
+        <a [routerLink]="['/book', book.id]">{{book.title}}</a>
+      </h3>
+      <h6 class="card-subtitle mb-2 text-muted">{{book.subTitle}}</h6>
+      <div class="card-text">
           <span *ngFor="let category of book.categories"
                 class="badge badge-pill badge-secondary mr-1 pb-1">{{category}}</span>
-        </div>
-      </div>
-      <img class="" src="{{book.smallThumbnail}}" alt="Card image cap" width="100%">
-      <div *ngIf="book.authors" class="card-footer">
-        <p class="card-text">
-          <small class="text-muted">by
-            <span>{{book.authors | arrayDisplay}}</span>
-          </small>
-        </p>
       </div>
     </div>
+    <img class="" src="{{book.smallThumbnail}}" alt="Card image cap" width="100%">
+    <div *ngIf="book.authors" class="card-footer">
+      <p class="card-text">
+        <small class="text-muted">by
+          <span>{{book.authors | arrayDisplay}}</span>
+        </small>
+      </p>
+    </div>
+  </div>
 
-  </div> <!-- CARD DECK END -->
-
+</div> <!-- CARD DECK END -->

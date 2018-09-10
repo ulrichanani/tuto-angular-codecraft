@@ -13,7 +13,6 @@ export class SearchComponent implements OnInit {
               private route: ActivatedRoute,
               private router: Router) {
     this.route.params.subscribe(params => {
-      // console.log(params);
       if (params['term']) {
         this.doSearch(params['term']);
       }

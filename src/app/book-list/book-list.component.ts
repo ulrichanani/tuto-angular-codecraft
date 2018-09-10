@@ -14,7 +14,7 @@ export class BookListComponent implements OnInit {
   @Input() books: Book[];
 
   ngOnInit() {
-    // console.log('BookList', this.books);
+    console.log('BookList', this.books);
   }
 
 }

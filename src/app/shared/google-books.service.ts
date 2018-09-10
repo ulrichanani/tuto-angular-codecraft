@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Book } from './book';
 import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
+import { environment as env } from '../../environments/environment';
 
 @Injectable()
 export class GoogleBooksService {
-  private API_PATH: string = 'https://www.googleapis.com/books/v1/volumes';
   public loading: boolean = false;
   public initialised: boolean = false;
   public totalItems: number = 0;
-  public _page: number = 1;
+  private _page: number = 1;
   public pageSize: number = 10;
   public query: string = '';
   public books: Book[];
@@ -48,7 +48,7 @@ export class GoogleBooksService {
     this.loading = true;
     this.initialised = true;
     this.books = [];
-    this.http.get(`${this.API_PATH}?q=${this.query}&maxResults=${this.pageSize}&startIndex=${this.startIndex}`)
+    this.http.get(`${env.api_path}?q=${this.query}&maxResults=${this.pageSize}&startIndex=${this.startIndex}`)
       .pipe(
         tap(res => {
           let data: any = res;
@@ -67,7 +67,7 @@ export class GoogleBooksService {
   }
 
   retrieveBook(bookId: string) {
-    return this.http.get(`${this.API_PATH}/${bookId}`);
+    return this.http.get(`${env.api_path}/${bookId}`);
   }
 
   public bookFactory(item: any): Book {

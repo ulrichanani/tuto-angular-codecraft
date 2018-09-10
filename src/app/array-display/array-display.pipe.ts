@@ -12,7 +12,6 @@ export class ArrayDisplayPipe implements PipeTransform {
       val += `${value[i]} & `;
     }
     val += `${value[value.length - 1]}`;
-    console.log(val);
     return val;
   }
 

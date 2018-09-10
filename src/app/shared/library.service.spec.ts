@@ -1,8 +1,8 @@
 /* tslint:disable:no-unused-variable */
 
-import {TestBed, async, inject} from '@angular/core/testing';
-import {LibraryService} from './library.service';
-import {Book} from './book';
+import { TestBed, async, inject } from '@angular/core/testing';
+import { LibraryService } from './library.service';
+import { Book } from './book';
 
 function createBookFixture(book_id) {
   return new Book(

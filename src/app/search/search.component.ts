@@ -1,8 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {GoogleBooksService} from '../shared/google-books.service';
-import {Book} from '../shared/book';
-import {Router, ActivatedRoute} from '@angular/router';
-import {FormControl} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { GoogleBooksService } from '../shared/google-books.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-search',
@@ -17,7 +15,8 @@ export class SearchComponent implements OnInit {
     this.route.params.subscribe(params => {
       // console.log(params);
       if (params['term']) {
-        this.doSearch(params['term']); }
+        this.doSearch(params['term']);
+      }
     });
   }
 

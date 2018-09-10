@@ -1,10 +1,10 @@
-import {Component} from '@angular/core';
-import {Book} from '../shared/book';
-import {GoogleBooksService} from '../shared/google-books.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {Observable} from 'rxjs';
-import {LibraryService} from 'src/app/shared/library.service';
-import {map} from 'rxjs/operators';
+import { Component } from '@angular/core';
+import { Book } from '../shared/book';
+import { GoogleBooksService } from '../shared/google-books.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { LibraryService } from 'src/app/shared/library.service';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-book',

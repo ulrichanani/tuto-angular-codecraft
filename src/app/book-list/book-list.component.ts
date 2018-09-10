@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {GoogleBooksService} from '../shared/google-books.service';
-import {Book} from '../shared/book';
+import { Component, Input, OnInit } from '@angular/core';
+import { GoogleBooksService } from '../shared/google-books.service';
+import { Book } from '../shared/book';
 
 @Component({
   selector: 'app-book-list',

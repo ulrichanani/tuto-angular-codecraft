@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {LibraryService} from '../shared/library.service';
+import { Component, OnInit } from '@angular/core';
+import { LibraryService } from '../shared/library.service';
 
 @Component({
   selector: 'app-library',

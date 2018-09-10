@@ -1,10 +1,10 @@
 /* tslint:disable:no-unused-variable */
 
-import {TestBed, async, inject, tick, fakeAsync} from '@angular/core/testing';
-import {GoogleBooksService} from './google-books.service';
-import {HttpModule, BaseRequestOptions, Http, ResponseOptions, Response} from "@angular/http";
-import {MockBackend} from "@angular/http/testing";
-import {Book} from "./book";
+import { TestBed, async, inject, tick, fakeAsync } from '@angular/core/testing';
+import { GoogleBooksService } from './google-books.service';
+import { HttpModule, BaseRequestOptions, Http, ResponseOptions, Response } from "@angular/http";
+import { MockBackend } from "@angular/http/testing";
+import { Book } from "./book";
 
 describe('GoogleBooksService', () => {
 

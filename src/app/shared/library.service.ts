@@ -1,5 +1,5 @@
-import {Injectable} from '@angular/core';
-import {Book} from './book';
+import { Injectable } from '@angular/core';
+import { Book } from './book';
 
 @Injectable()
 export class LibraryService {
@@ -24,7 +24,7 @@ export class LibraryService {
     savedBooks = JSON.parse(savedBooks);
     // console.log(savedBooks);
     for (let i = 0; i < savedBooks.length; i++) {
-      let savedBook = savedBooks[i];
+      const savedBook = savedBooks[i];
       // console.log(savedBook);
       // noinspection TypeScriptValidateTypes,TypeScriptUnresolvedFunction
       this.books.push(Object.assign(new Book(null, null, null, null, null, null, null, null, null, null), savedBook));
@@ -40,7 +40,7 @@ export class LibraryService {
   }
 
   removeBook(book: Book) {
-    let index = this.indexOf(book);
+    const index = this.indexOf(book);
     this.books.splice(index, 1);
     this.save();
   }

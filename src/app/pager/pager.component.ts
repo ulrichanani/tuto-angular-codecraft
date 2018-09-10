@@ -1,5 +1,5 @@
-import {Component, OnInit} from "@angular/core";
-import {GoogleBooksService} from '../shared/google-books.service';
+import { Component, OnInit } from "@angular/core";
+import { GoogleBooksService } from '../shared/google-books.service';
 
 @Component({
   selector: 'app-pager',

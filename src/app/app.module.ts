@@ -15,6 +15,7 @@ import { routes } from './app.routes';
 import { GoogleBooksService } from './shared/google-books.service';
 import { PagerComponent } from './pager/pager.component';
 import { LibraryService } from './shared/library.service';
+import { ArrayDisplayPipe } from './array-display/array-display.pipe';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LibraryService } from './shared/library.service';
     BookListComponent,
     SearchComponent,
     LibraryComponent,
-    PagerComponent
+    PagerComponent,
+    ArrayDisplayPipe
   ],
   imports: [
     BrowserModule,

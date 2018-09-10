@@ -17,14 +17,4 @@ export class BookListComponent implements OnInit {
     // console.log('BookList', this.books);
   }
 
-  formatAuthors(authors: string[]) {
-    if (authors == null) { return; }
-    let val = '';
-    for (let i = 0; i < authors.length - 1; i++) {
-      val += `${authors[i]} & `;
-    }
-    val += `${authors[authors.length - 1]}`;
-    return val;
-  }
-
 }

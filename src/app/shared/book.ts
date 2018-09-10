@@ -9,7 +9,6 @@ export class Book {
               public description: string,
               public categories: string[],
               public thumbnail: string,
-              public smallThumbnail: string,
-              public url?: string) {
+              public smallThumbnail: string) {
   }
 }

@@ -75,7 +75,6 @@ export class GoogleBooksService {
   }
 
   public bookFactory(item: any): Book {
-    console.log(item);
     return new Book(
       item.id,
       item.volumeInfo.title,

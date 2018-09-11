@@ -3,6 +3,7 @@ import { Book } from './book';
 import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../environments/environment';
+import { NgProgress } from '@ngx-progressbar/core';
 
 @Injectable()
 export class GoogleBooksService {
@@ -15,7 +16,7 @@ export class GoogleBooksService {
   public books: Book[];
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, public progress: NgProgress) {
   }
 
   get startIndex() {
@@ -38,6 +39,7 @@ export class GoogleBooksService {
   set page(val: number) {
     if (val !== this.page) {
       this._page = val;
+      this.progress.start();
       this.searchBooks(this.query);
     }
   }
@@ -50,24 +52,21 @@ export class GoogleBooksService {
     this.books = [];
     this.http.get(`${env.api_path}?q=${this.query}&maxResults=${this.pageSize}&startIndex=${this.startIndex}`)
       .pipe(
-
         tap(res => {
           const data: any = res;
           this.totalItems = data.totadatalItems;
         }),
-
         map(res => {
           const data: any = res;
           return data.items ? data.items : [];
         }),
+        // tap(books => console.log(books)),
         map(items => {
           return items.map(item => this.bookFactory(item));
         }),
-
         tap(() => this.loading = false),
-
         // tap(books => console.log(books))
-
+        tap( () => this.progress.complete())
       ).subscribe((books) => this.books = books);
   }
 
@@ -76,6 +75,7 @@ export class GoogleBooksService {
   }
 
   public bookFactory(item: any): Book {
+    console.log(item);
     return new Book(
       item.id,
       item.volumeInfo.title,
@@ -85,8 +85,8 @@ export class GoogleBooksService {
       item.volumeInfo.publishedDate,
       item.volumeInfo.description,
       item.volumeInfo.categories ? item.volumeInfo.categories.map((item) => item.split('/').pop().trim()) : ['N/A'],
-      item.volumeInfo.imageLinks.thumbnail,
-      item.volumeInfo.imageLinks.smallThumbnail
+      item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.thumbnail : '',
+      item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.smallThumbnail : ''
     );
   }
 }

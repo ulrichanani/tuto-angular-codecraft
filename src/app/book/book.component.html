@@ -1,9 +1,9 @@
 <div class="row m-3">
-  <div class="col-lg-6" *ngIf="book | async; let book; else loading">
+  <div class="col-lg-6" *ngIf="book | async; let book;">
     <h2 class="text-center">{{book.title}}</h2>
     <h6 class="text-center">{{book.subTitle}}</h6>
     <div class=" m-3">
-      <img class="rounded mx-auto" src="{{book.thumbnail}}" width="128" height="194">
+      <img class="rounded mx-auto" (load)="loaded()" src="{{book.thumbnail}}" width="128" height="194">
     </div>
     <dl>
       <dt>Description</dt>
@@ -31,5 +31,3 @@
     </p>
   </div>
 </div>
-
-<ng-template #loading>Loading, Please Wait ...</ng-template>

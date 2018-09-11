@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './shared/ngrx-library.reducer';
+import { NgProgress, NgProgressModule } from '@ngx-progressbar/core';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
@@ -36,6 +37,7 @@ import { ArrayDisplayPipe } from './array-display/array-display.pipe';
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    NgProgressModule.forRoot(),
     RouterModule.forRoot(routes),
     StoreModule.forRoot({
       book: reducer

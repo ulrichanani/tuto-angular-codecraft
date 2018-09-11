@@ -3,7 +3,7 @@
   <div class="card" *ngFor="let book of books">
     <div class="card-header">
       <h6 class="panel-title text-center">
-        <a [routerLink]="['/book', book.id]">{{book.title}}</a>
+        <a [routerLink]="['/book', book.id]" (click)="progress.start()">{{book.title}}</a>
       </h6>
       <div class="card-subtitle mb-2 text-muted" [style.font-size.%]="75">{{book.subTitle}}</div>
       <div class="card-text text-center" [style.font-size.%]="75">
@@ -11,7 +11,7 @@
                 class="badge badge-pill badge-secondary mr-1 pb-1" [style.white-space]="'normal'">{{category}}</span>
       </div>
     </div>
-    <img class="" src="{{book.smallThumbnail}}" alt="Card image cap" width="100%">
+    <img class="" *ngIf="book.smallThumbnail" src="{{book.smallThumbnail}}" alt="Card image cap" width="100%" />
     <div *ngIf="book.authors" class="card-footer">
       <p class="card-text">
         <small class="text-muted">by

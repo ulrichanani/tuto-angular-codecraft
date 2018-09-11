@@ -1,8 +1,9 @@
 <div class="container">
-  <div class="page-header">
-    <h4>Library
-    </h4>
+  <div class="page-header mb-3">
+    <h3>Library</h3>
   </div>
+
+  <div *ngIf="books.length == 0" class="text-center">La librairie est vide !</div>
 
   <app-book-list [books]="books"></app-book-list>
 </div>

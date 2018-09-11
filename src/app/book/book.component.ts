@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { AppState } from '../app.state';
 import { Store } from '@ngrx/store';
 import * as BookActions from '../shared/ngrx-library.actions';
+import { NgProgress } from '@ngx-progressbar/core';
 
 @Component({
   selector: 'app-book',
@@ -21,7 +22,8 @@ export class BookComponent {
   constructor(public gbooks: GoogleBooksService,
               private route: ActivatedRoute,
               private router: Router,
-              private store: Store<AppState>) {
+              private store: Store<AppState>,
+              public progress: NgProgress) {
     this.route.params.subscribe(params => {
       if (params['bookId']) {
         this.getBook(params['bookId']);
@@ -57,5 +59,9 @@ export class BookComponent {
       }
     }
     return -1;
+  }
+
+  loaded(): void {
+    this.progress.complete();
   }
 }

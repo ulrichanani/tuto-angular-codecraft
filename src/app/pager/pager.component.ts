@@ -13,14 +13,12 @@ export class PagerComponent implements OnInit {
 
   next() {
     if (this.gbooks.page >= this.gbooks.totalPages) { return; }
-    this.gbooks.page += 1;
-    this.gbooks.searchBooks(this.gbooks.query);
+    this.gbooks.page = this.gbooks.page + 1;
   }
 
   prev() {
     if (this.gbooks.page < 2) { return; }
-    this.gbooks.page -= 1;
-    this.gbooks.searchBooks(this.gbooks.query);
+    this.gbooks.page = this.gbooks.page - 1;
   }
 
 

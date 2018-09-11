@@ -2,13 +2,13 @@
 
   <div class="card" *ngFor="let book of books">
     <div class="card-header">
-      <h3 class="panel-title text-center">
+      <h6 class="panel-title text-center">
         <a [routerLink]="['/book', book.id]">{{book.title}}</a>
-      </h3>
-      <h6 class="card-subtitle mb-2 text-muted">{{book.subTitle}}</h6>
-      <div class="card-text">
+      </h6>
+      <div class="card-subtitle mb-2 text-muted" [style.font-size.%]="75">{{book.subTitle}}</div>
+      <div class="card-text text-center" [style.font-size.%]="75">
           <span *ngFor="let category of book.categories"
-                class="badge badge-pill badge-secondary mr-1 pb-1">{{category}}</span>
+                class="badge badge-pill badge-secondary mr-1 pb-1" [style.white-space]="'normal'">{{category}}</span>
       </div>
     </div>
     <img class="" src="{{book.smallThumbnail}}" alt="Card image cap" width="100%">

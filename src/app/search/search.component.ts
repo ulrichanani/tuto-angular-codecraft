@@ -24,6 +24,9 @@ export class SearchComponent implements OnInit {
 
     this.route.params.subscribe(params => {
       if (params['q']) {
+        if (!params['p']) {
+          this.router.navigate(['search/', {q: params['q'], p: 1}]);
+        }
         this.searchInput.setValue(params['q']);
         this.doSearch(params['q'], params['p']);
       } else if (this.gbooks.query) {
@@ -35,13 +38,12 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  doSearch(query: string, page: number) {
+  doSearch(query: string, page: number = 1) {
     this.gbooks.query = query;
     this.gbooks.page = page;
   }
 
   onSearch() {
-    console.log(this.searchInput.value);
     this.router.navigate(['search/', {q: this.searchInput.value, p: 1}]);
   }
 

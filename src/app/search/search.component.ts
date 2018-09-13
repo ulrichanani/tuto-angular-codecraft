@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GoogleBooksService } from '../shared/google-books.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-search',
@@ -9,13 +10,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
+  frm: FormGroup;
+  searchInput: FormControl;
+
   constructor(public gbooks: GoogleBooksService,
               private route: ActivatedRoute,
               private router: Router) {
+
+    this.searchInput = new FormControl('');
+    this.frm = new FormGroup({
+      search: this.searchInput
+    });
+
     this.route.params.subscribe(params => {
-      if (params['term']) {
-        console.log(params['term']);
-        this.doSearch(params['term']);
+      if (params['q']) {
+        this.searchInput.setValue(params['q']);
+        this.doSearch(params['q'], params['p']);
+      } else if (this.gbooks.query) {
+        this.searchInput.setValue(this.gbooks.query);
       }
     });
   }
@@ -23,12 +35,14 @@ export class SearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  doSearch(term: string) {
-    this.gbooks.searchBooks(term);
+  doSearch(query: string, page: number) {
+    this.gbooks.query = query;
+    this.gbooks.page = page;
   }
 
-  onSearch(term: string) {
-    this.router.navigate(['search', {term: term}]);
+  onSearch() {
+    console.log(this.searchInput.value);
+    this.router.navigate(['search/', {q: this.searchInput.value, p: 1}]);
   }
 
 }

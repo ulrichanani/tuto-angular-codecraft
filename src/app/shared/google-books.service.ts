@@ -37,9 +37,15 @@ export class GoogleBooksService {
 
   set page(val: number) {
     if (val !== this.page) {
-      this._page = val;
-      this.searchBooks(this.query);
+      if (val > this.totalPages && this.totalPages > 0) {
+        this._page = this.totalPages;
+      } else if (val < 1) {
+        this._page = 1;
+      } else {
+        this._page = val;
+      }
     }
+    this.searchBooks(this.query);
   }
 
 

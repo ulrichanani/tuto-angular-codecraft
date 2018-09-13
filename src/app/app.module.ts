@@ -43,8 +43,7 @@ import { ArrayDisplayPipe } from './array-display/array-display.pipe';
     NgProgressModule.forRoot(),
     NgProgressHttpModule.forRoot(),
     // NgProgressRouterModule.forRoot(),
-    RouterModule.forRoot(routes, {useHash: true
-    }),
+    RouterModule.forRoot(routes),
     StoreModule.forRoot({
       book: reducer
     })

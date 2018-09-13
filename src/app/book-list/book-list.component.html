@@ -3,7 +3,7 @@
   <div class="card" *ngFor="let book of books">
     <div class="card-header">
       <h6 class="panel-title text-center">
-        <a [routerLink]="['/book', book.id]" (click)="progress.start()">{{book.title}}</a>
+        <a [routerLink]="['/book', book.id]">{{book.title}}</a>
       </h6>
       <div class="card-subtitle mb-2 text-muted" [style.font-size.%]="75">{{book.subTitle}}</div>
       <div class="card-text text-center" [style.font-size.%]="75">

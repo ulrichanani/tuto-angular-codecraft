@@ -3,7 +3,6 @@ import { Book } from './book';
 import { map, tap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { environment as env } from '../../environments/environment';
-import { NgProgress } from '@ngx-progressbar/core';
 
 @Injectable()
 export class GoogleBooksService {
@@ -16,7 +15,7 @@ export class GoogleBooksService {
   public books: Book[];
 
 
-  constructor(private http: HttpClient, public progress: NgProgress) {
+  constructor(private http: HttpClient) {
   }
 
   get startIndex() {
@@ -39,7 +38,6 @@ export class GoogleBooksService {
   set page(val: number) {
     if (val !== this.page) {
       this._page = val;
-      this.progress.start();
       this.searchBooks(this.query);
     }
   }
@@ -66,7 +64,6 @@ export class GoogleBooksService {
         }),
         tap(() => this.loading = false),
         // tap(books => console.log(books))
-        tap( () => this.progress.complete())
       ).subscribe((books) => this.books = books);
   }
 

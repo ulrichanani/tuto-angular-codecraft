@@ -1,10 +1,13 @@
+///<reference path="../../node_modules/@ngx-progressbar/http/lib/ng-progress-http.module.d.ts"/>
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { reducer } from './shared/ngrx-library.reducer';
-import { NgProgress, NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressModule } from '@ngx-progressbar/core';
+import { NgProgressHttpModule } from '@ngx-progressbar/http';
+// import { NgProgressRouterModule } from '@ngx-progressbar/router';
 
 // COMPONENTS
 import { AppComponent } from './app.component';
@@ -38,7 +41,10 @@ import { ArrayDisplayPipe } from './array-display/array-display.pipe';
     ReactiveFormsModule,
     FormsModule,
     NgProgressModule.forRoot(),
-    RouterModule.forRoot(routes),
+    NgProgressHttpModule.forRoot(),
+    // NgProgressRouterModule.forRoot(),
+    RouterModule.forRoot(routes, {useHash: true
+    }),
     StoreModule.forRoot({
       book: reducer
     })

@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GoogleBooksService } from '../shared/google-books.service';
 import { Book } from '../shared/book';
-import { NgProgress } from '@ngx-progressbar/core';
 
 @Component({
   selector: 'app-book-list',
@@ -10,7 +9,7 @@ import { NgProgress } from '@ngx-progressbar/core';
 })
 export class BookListComponent implements OnInit {
 
-  constructor(public gbooks: GoogleBooksService, public progress: NgProgress) {}
+  constructor(public gbooks: GoogleBooksService) {}
 
   @Input() books: Book[];
 

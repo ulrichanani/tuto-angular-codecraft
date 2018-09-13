@@ -3,7 +3,7 @@
     <h2 class="text-center">{{book.title}}</h2>
     <h6 class="text-center">{{book.subTitle}}</h6>
     <div class=" m-3">
-      <img class="rounded mx-auto" (load)="loaded()" src="{{book.thumbnail}}" width="128" height="194">
+      <img class="rounded mx-auto" src="{{book.thumbnail}}" width="128" height="194">
     </div>
     <dl>
       <dt>Description</dt>
@@ -24,10 +24,10 @@
     </dl>
     <p [innerHtml]="book.description"></p>
     <p>
-      <button type="button" [disabled]="hasBook(book)" (click)="addBook(book)"
+      <button type="button" *ngIf="!hasBook(book)" (click)="addBook(book)"
               class="btn btn-primary">Add To Library</button>
-      <button type="button" [disabled]="!hasBook(book)" (click)="removeBook(book)"
-              class="btn btn-secondary ml-2">Remove From Library</button>
+      <button type="button" *ngIf="hasBook(book)" (click)="removeBook(book)"
+              class="btn btn-secondary">Remove From Library</button>
     </p>
   </div>
 </div>
